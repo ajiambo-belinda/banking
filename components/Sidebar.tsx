@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 
 
+
 interface SidebarProps {
   user: any;
 }
@@ -64,7 +65,7 @@ const Sidebar = ({ user }: SidebarProps) => {
 
         USER
       </nav>
-      FOOTER
+      <footer  user= {user}/>
     </section>
   )
 }

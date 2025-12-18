@@ -80,7 +80,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                 USER
               </nav>
             </SheetClose>
-            FOOTER
+            <footer user={user} type="mobile"/>
           </div>
         </SheetContent>
       </Sheet>

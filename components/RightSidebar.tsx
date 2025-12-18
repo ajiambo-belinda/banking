@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import BankCard from './BankCard';
+import Footer from './footer' 
 
 interface RightSidebarProps {
   user: any;
@@ -16,12 +17,18 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
         <div className='profile-banner'/>
         <div className='profile'>
           <div className='profile-img'>
-            <span className='text-1xl font-bold text-blue-500'>{user.firstName[0]}</span>
+            <span className='text-1xl font-bold text-blue-500'>
+              {user?.firstName?.[0] || user?.name?.[0] || 'U'}
+            </span>
           </div>
           <div className='profile-details'>
-            <h1 className='profile-name'>{user.firstName} {user.lastName}</h1>
+            <h1 className='profile-name'>
+              {user?.firstName && user?.lastName 
+                ? `${user.firstName} ${user.lastName}`
+                : user?.name || 'User'}
+            </h1>
             <p className='profile-email'>
-              {user.email}
+              {user?.email || ''}
             </p>
           </div>
         </div>
@@ -41,28 +48,27 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
             <h2 className='text-14 font-semibold text-gray-600'>Add Bank</h2>
           </Link>
         </div>
-        {banks?.length >0 && (
+        {banks?.length > 0 && (
             <div className='relative flex flex-1 flex-col items-center justify-center gap-5'>
                 <div className='relative z-10'>
                     <BankCard
                     key={banks[0]?.id}
                     account={banks[0]}
-                    userName={'${user.firstName} ${user.lastName}'}
+                    userName={user}
                     showBalance={false}
                      />
 
                 </div>
                 {banks[1] && (
-  <div className='absolute right-0 top-8 z-0 w-[90%]'>
-    <BankCard 
-    key={banks[1]?.id}
-                    account={banks[1]}
-                    userName={'${user.firstName} ${user.lastName}'}
-                    showBalance={false}
-    />
-  </div>
-)}
-
+                  <div className='absolute right-0 top-8 z-0 w-[90%]'>
+                    <BankCard 
+                      key={banks[1]?.id}
+                      account={banks[1]}
+                      userName={user}
+                      showBalance={false}
+                    />
+                  </div>
+                )}
             </div>
         )}
       </section>

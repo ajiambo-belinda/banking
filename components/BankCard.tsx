@@ -27,6 +27,7 @@ const BankCard = ({userName, account, showBalance=true}: CreditCardProps) => {
                     </h1>
                     <h2 className='text=12 font-semibold
                      text-white'>
+                        {userName}
                         ●●/●● 
                      </h2>
                 </div>
